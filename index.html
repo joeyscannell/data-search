@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+<head>
+    <title>Data Display and Search</title>
+		<!-- Link scripts and stylesheets -->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>-->
+		<script src="js/angular.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" ></script>
+
+		<meta charset="utf-8"/>
+</head>
+<body>
+	<!-- link to MainController in script.js file -->
+    <div id="content" ng-controller="MainController">
+				<div><small>Joseph Scannell</small></div>
+				<h1>Data Display and Search</h1>
+
+
+        <input type='text' ng-model='searchText' placeholder="Search for animaly type, breed, colour etc " />
+
+				<!--select animal type: cat, dog, rabbit -->
+				<select ng-model="animalType" >
+    			<option value="" disabled selected>Animal Type</option>
+				  <option ng-repeat="animal in animals">{{animal.Animal_Type}}</option>
+				</select>
+
+				<!-- this configuration hides duplicates but only shows 1 result, will need to come back to this -->
+				<!--<select ng-options="animal.Animal_Type for animal in animals | unique: 'Animal_Type'" ng-model="animalType">
+					<option value="" disabled selected>Animal Type</option>
+					<option ng-repeat="animal in animals">{{animal.Animal_Type}}</option>
+				</select>-->
+
+
+				<!-- this container is linked to the searchText and animalType inputs -->
+        <div ng-repeat="animal in animals | filter:searchText | filter:animalType" class="large-6 medium-6 small-12 columns">
+					<div class="animal">
+						<strong>Animal ID: </strong>{{animal.Animal_ID}}<br/>
+						<strong>Animal Type: </strong>{{animal.Animal_Type}}<br/>
+						<strong>Animal Name: </strong>{{animal.Animal_Name}}<br/>
+						<strong>Animal Gender: </strong>{{animal.Animal_Gender}}<br/>
+						<strong>Animal Breed: </strong>{{animal.Animal_Breed}}<br/>
+						<strong>Animal Color: </strong>{{animal.Animal_Color}}<br/>
+						<strong>Address: </strong>{{animal.Address}}<br/>
+			  </div>
+    	</div>
+		</div>
+</body>
+</html>
