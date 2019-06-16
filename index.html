@@ -18,31 +18,47 @@
 				<h1>Data Display and Search</h1>
 
 
-        <input type='text' ng-model='searchText' placeholder="Search for animaly type, breed, colour etc " />
+        <input type='text' ng-model='searchText' placeholder="Search for animal type, breed, colour etc " />
 
+
+				<!-- this container is linked to the searchText, animal type, breed and color inputs !**** NOT WORKING COREECTLY - need to look into this -->
 				<!--select animal type: cat, dog, rabbit -->
-				<select ng-model="animalType" >
-    			<option value="" disabled selected>Animal Type</option>
-				  <option ng-repeat="animal in animals">{{animal.Animal_Type}}</option>
-				</select>
+				<!--<div class="large-4 medium-12 columns">
+					<select ng-model="animalType" >
+	    			<option value="" disabled selected>Animal Type</option>
+					  <option ng-repeat="animal in animals | unique: 'Animal_Type'">{{animal.Animal_Type}}</option>
+					</select>
+				</div>
 
-				<!-- this configuration hides duplicates but only shows 1 result, will need to come back to this -->
-				<!--<select ng-options="animal.Animal_Type for animal in animals | unique: 'Animal_Type'" ng-model="animalType">
-					<option value="" disabled selected>Animal Type</option>
-					<option ng-repeat="animal in animals">{{animal.Animal_Type}}</option>
-				</select>-->
+				<div class="large-4 medium-12 columns">
+					<select ng-model="animalBreed" >
+						<option value="" disabled selected>Animal Breed</option>
+						<option ng-repeat="animal in animals | unique: 'Animal_Breed'">{{animal.Animal_Breed}}</option>
+					</select>
+				</div>
+
+				<div class="large-4 medium-12 columns">
+					<select ng-model="animalColour" >
+						<option value="" disabled selected>Animal Color</option>
+						<option ng-repeat="animal in animals | unique: 'Animal_Color'">{{animal.Animal_Color}}</option>
+					</select>
+				</div>
 
 
-				<!-- this container is linked to the searchText and animalType inputs -->
-        <div ng-repeat="animal in animals | filter:searchText | filter:animalType" class="large-6 medium-6 small-12 columns">
+
+        <div ng-repeat="animal in animals | filter:searchText | filter:animalType | filter:animalBreed | filter:animalColor" class="large-4 medium-6 small-12 columns">-->
+
+					<!-- this container is linked to the searchText input -->
+					<div ng-repeat="animal in animals | filter:searchText" class="large-4 medium-6 small-12 columns">
 					<div class="animal">
-						<strong>Animal ID: </strong>{{animal.Animal_ID}}<br/>
-						<strong>Animal Type: </strong>{{animal.Animal_Type}}<br/>
-						<strong>Animal Name: </strong>{{animal.Animal_Name}}<br/>
-						<strong>Animal Gender: </strong>{{animal.Animal_Gender}}<br/>
-						<strong>Animal Breed: </strong>{{animal.Animal_Breed}}<br/>
-						<strong>Animal Color: </strong>{{animal.Animal_Color}}<br/>
-						<strong>Address: </strong>{{animal.Address}}<br/>
+						<strong>Animal ID: <br/></strong>{{animal.Animal_ID}}<br/>
+						<strong>Animal Type: <br/></strong>{{animal.Animal_Type}}<br/>
+						<strong>Animal Name: <br/></strong>{{animal.Animal_Name}}<br/>
+						<strong>Animal Gender: <br/></strong>{{animal.Animal_Gender}}<br/>
+						<strong>Animal Breed: <br/></strong>{{animal.Animal_Breed}}<br/>
+						<strong>Animal Color: <br/></strong>{{animal.Animal_Color}}<br/>
+						<strong>Address: <br/></strong>{{animal.Address}}<br/>
+						<img src="img/{{animal.Picture}}" />
 			  </div>
     	</div>
 		</div>
