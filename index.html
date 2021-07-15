@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+  <head>
+    <title>Data Display and Search</title>
+    <!-- Link scripts and stylesheets -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>-->
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js"></script>
 
-<head>
-	<title>Data Display and Search</title>
-	<!-- Link scripts and stylesheets -->
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>-->
-	<script src="js/angular.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="script.js"></script>
+    <meta charset="utf-8" />
+  </head>
 
-	<meta charset="utf-8" />
-</head>
+  <body>
+    <!-- link to MainController in script.js file -->
+    <div id="content" ng-controller="MainController">
+      <h1>Data Display and Search</h1>
 
-<body>
-	<!-- link to MainController in script.js file -->
-	<div id="content" ng-controller="MainController">
-		<h1>Data Display and Search</h1>
+      <input
+        type="text"
+        ng-model="searchText"
+        placeholder="Search for animal type, breed, colour etc "
+      />
 
-
-		<input type='text' ng-model='searchText' placeholder="Search for animal type, breed, colour etc " />
-
-
-		<!-- this container is linked to the searchText, animal type, breed and color inputs !**** NOT WORKING COREECTLY - need to look into this -->
-		<!--select animal type: cat, dog, rabbit -->
-		<!--<div class="large-4 medium-12 columns">
+      <!-- this container is linked to the searchText, animal type, breed and color inputs !**** NOT WORKING COREECTLY - need to look into this -->
+      <!--select animal type: cat, dog, rabbit -->
+      <!--<div class="large-4 medium-12 columns">
 					<select ng-model="animalType" >
 	    			<option value="" disabled selected>Animal Type</option>
 					  <option ng-repeat="animal in animals | unique: 'Animal_Type'">{{animal.Animal_Type}}</option>
@@ -49,20 +50,22 @@
 
         <div ng-repeat="animal in animals | filter:searchText | filter:animalType | filter:animalBreed | filter:animalColor" class="large-4 medium-6 small-12 columns">-->
 
-		<!-- this container is linked to the searchText input -->
-		<div ng-repeat="animal in animals | filter:searchText" class="large-4 medium-6 small-12 columns">
-			<div class="animal">
-				<strong>Animal ID: <br /></strong>{{animal.Animal_ID}}<br />
-				<strong>Animal Type: <br /></strong>{{animal.Animal_Type}}<br />
-				<strong>Animal Name: <br /></strong>{{animal.Animal_Name}}<br />
-				<strong>Animal Gender: <br /></strong>{{animal.Animal_Gender}}<br />
-				<strong>Animal Breed: <br /></strong>{{animal.Animal_Breed}}<br />
-				<strong>Animal Color: <br /></strong>{{animal.Animal_Color}}<br />
-				<strong>Address: <br /></strong>{{animal.Address}}<br />
-				<img src="img/{{animal.Picture}}" />
-			</div>
-		</div>
-	</div>
-</body>
-
+      <!-- this container is linked to the searchText input -->
+      <div
+        ng-repeat="animal in animals | filter:searchText"
+        class="large-4 medium-6 small-12 columns"
+      >
+        <div class="animal">
+          <strong>Animal ID: <br /></strong>{{animal.Animal_ID}}<br />
+          <strong>Animal Type: <br /></strong>{{animal.Animal_Type}}<br />
+          <strong>Animal Name: <br /></strong>{{animal.Animal_Name}}<br />
+          <strong>Animal Gender: <br /></strong>{{animal.Animal_Gender}}<br />
+          <strong>Animal Breed: <br /></strong>{{animal.Animal_Breed}}<br />
+          <strong>Animal Color: <br /></strong>{{animal.Animal_Color}}<br />
+          <strong>Address: <br /></strong>{{animal.Address}}<br />
+          <img src="img/{{animal.Picture}}" />
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
